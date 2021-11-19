@@ -3,22 +3,17 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Container, Row, Col } from "react-bootstrap";
 
 export default function DisplayWeather() {
   const currentCityIcon = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
-  const [city, setCity] = useState("Angra do Heroísmo");
+  const [city, setCity] = useState("");
   const [typedCity, setTypedCity] = useState("");
   const [weatherInfo, setWeatherInfo] = useState(null);
   const [loaded, setLoaded] = useState(false);
   let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-
- 
-  
-  
   
   function updateCity(event) {
     setCity(event.target.value);
@@ -44,7 +39,7 @@ export default function DisplayWeather() {
       wind: Math.round(3.6 * response.data.wind.speed),
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     }); 
-    return setLoaded(true);
+    setLoaded(true);
   }
   
   function formatDate(timestamp) {
@@ -83,18 +78,18 @@ export default function DisplayWeather() {
   if (loaded) { 
     return (
       <div className="displayWeather">
-        <Container>
-          <Row>
-            <Col xs={4}>
+        
+          <div className="row">
+            <div className="col-4">
               <h2 className="city">{typedCity}</h2>
               <h4 className="currentDate">{weatherInfo.dateHour}</h4>
               <h3 className="weatherDescription">{weatherInfo.description}</h3>
               <img src={weatherInfo.icon} alt={weatherInfo.description} />
-            </Col>
-            <Col xs={2}>
+            </div>
+            <div className="col-2">
               <h1>{weatherInfo.temperature}°C | F</h1>
-            </Col>
-            <Col xs={6}>
+            </div>
+            <div className="col-6">
               <form onSubmit={handleSubmit}>
                 <input
                   type="search"
@@ -109,39 +104,44 @@ export default function DisplayWeather() {
                 <li>Humidity: {weatherInfo.humidity}%</li>
                 <li>Wind: {weatherInfo.wind}km/h</li>
               </ul>
-            </Col>
-          </Row>
-          <Row className="text-center">
-            <Col xs={2}>
+            </div>
+          </div>
+          <div className="row text-center">
+            <div className="col-2">
               <p className="forecastDay">Saturday</p>
               <img src={weatherInfo.icon} alt={weatherInfo.description} />
               <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </Col>
-            <Col xs={2}>
+            </div>
+            <div className="col-2">
               <p className="forecastDay">Saturday</p>
               <img src={weatherInfo.icon} alt={weatherInfo.description} />
               <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </Col>
-            <Col xs={2}>
+            </div>
+            <div className="col-2">
               <p className="forecastDay">Saturday</p>
               <img src={weatherInfo.icon} alt={weatherInfo.description} />
               <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </Col>
-            <Col xs={2}>
+            </div>
+            <div className="col-2">
               <p className="forecastDay">Saturday</p>
               <img src={weatherInfo.icon} alt={weatherInfo.description} />
               <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </Col>
-            <Col xs={2}>
+            </div>
+            <div className="col-2">
               <p className="forecastDay">Saturday</p>
               <img src={weatherInfo.icon} alt={weatherInfo.description} />
               <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </div>
       </div>
     );
   } else {
-    return "Sorry, info could not be loaded";
+        let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
+        let city = "Angra do Heroísmo"
+        let units = "metric";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+        axios.get(apiUrl).then(handleResponse);
+
+        return "Loading weather info..."
   }
 }

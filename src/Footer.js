@@ -7,6 +7,7 @@ export default function Footer(){
           <a
             href="https://github.com/NatachaFerreira/weather-app-react.git"
             target="_blank"
+            rel="noreferrer"
             title="Code on github"
           >
             Open-source code
@@ -15,6 +16,7 @@ export default function Footer(){
           <a
             href="https://youthful-babbage-936314.netlify.app/"
             target="_blank"
+            rel="noreferrer"
             title="Natacha Ferreira's Portfolio"
           >
             Natacha Ferreira
