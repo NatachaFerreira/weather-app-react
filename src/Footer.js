@@ -13,7 +13,7 @@ export default function Footer(){
           </a>
           , designed and built by &nbsp;
           <a
-            href="https://github.com/NatachaFerreira/Portfolio.git"
+            href="https://youthful-babbage-936314.netlify.app/"
             target="_blank"
             title="Natacha Ferreira's Portfolio"
           >
