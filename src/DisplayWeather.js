@@ -9,7 +9,6 @@ export default function DisplayWeather(props) {
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const [city, setCity] = useState("");
   const [weatherInfo, setWeatherInfo] = useState({loaded: false});
-  const [loaded, setLoaded] = useState(false);
   let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
