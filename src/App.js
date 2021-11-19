@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 import DisplayWeather from './DisplayWeather';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -16,5 +16,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
