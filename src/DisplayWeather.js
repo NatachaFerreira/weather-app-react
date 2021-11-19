@@ -3,6 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import "./DisplayWeather.css"
 
 export default function DisplayWeather(props) {
   const currentCityIcon = <FontAwesomeIcon icon={faMapMarkerAlt} />;
@@ -36,7 +37,6 @@ export default function DisplayWeather(props) {
         wind: Math.round(3.6 * response.data.wind.speed),
         icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     }); 
-    setLoaded(true);
   }
   
   function formatDate(timestamp) {
@@ -75,61 +75,63 @@ export default function DisplayWeather(props) {
   if (weatherInfo.loaded) { 
     return (
       <div className="displayWeather">
-        
-          <div className="row">
-            <div className="col-4">
-              <h2 className="city">{weatherInfo.cityName}</h2>
-              <h4 className="currentDate">{weatherInfo.dateHour}</h4>
-              <h3 className="weatherDescription text-capitalize">{weatherInfo.description}</h3>
-              <img src={weatherInfo.icon} alt={weatherInfo.description} />
-            </div>
-            <div className="col-2">
-              <h1>{weatherInfo.temperature}°C | F</h1>
-            </div>
-            <div className="col-6">
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="search"
-                  placeholder="Type a City"
-                  onChange={updateCity}
-                />
-                <button type="submit">{searchIcon}</button>
-                <button>{currentCityIcon}</button>
-              </form>
-              <ul>
-                <li>Feels like: {weatherInfo.feelsLike}°</li>
-                <li>Humidity: {weatherInfo.humidity}%</li>
-                <li>Wind: {weatherInfo.wind}km/h</li>
-              </ul>
-            </div>
+        <div className="row">
+          <div className="col-5">
+            <h2 className="city">{weatherInfo.cityName}</h2>
+            <h4 className="currentDate">{weatherInfo.dateHour}</h4>
+            <h3 className="weatherDescription text-capitalize">
+              {weatherInfo.description}
+            </h3>
+            <img src={weatherInfo.icon} alt={weatherInfo.description} />
           </div>
-          <div className="row text-center">
-            <div className="col-2">
-              <p className="forecastDay">Saturday</p>
-              <img src={weatherInfo.icon} alt={weatherInfo.description} />
-              <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </div>
-            <div className="col-2">
-              <p className="forecastDay">Saturday</p>
-              <img src={weatherInfo.icon} alt={weatherInfo.description} />
-              <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </div>
-            <div className="col-2">
-              <p className="forecastDay">Saturday</p>
-              <img src={weatherInfo.icon} alt={weatherInfo.description} />
-              <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </div>
-            <div className="col-2">
-              <p className="forecastDay">Saturday</p>
-              <img src={weatherInfo.icon} alt={weatherInfo.description} />
-              <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </div>
-            <div className="col-2">
-              <p className="forecastDay">Saturday</p>
-              <img src={weatherInfo.icon} alt={weatherInfo.description} />
-              <p className="forecastTemperature">{weatherInfo.temperature}</p>
-            </div>
+          <div className="col-3 d-flex align-items-center">
+            <h1>{weatherInfo.temperature}°C | F</h1>
           </div>
+          <div className="col-4">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="search"
+                placeholder="Type a City"
+                onChange={updateCity}
+                className="cityInput"
+              />
+              <button type="submit">{searchIcon}</button>
+              <button>{currentCityIcon}</button>
+            </form>
+            <ul>
+              <li>Feels like: {weatherInfo.feelsLike}°</li>
+              <li>Humidity: {weatherInfo.humidity}%</li>
+              <li>Wind: {weatherInfo.wind}km/h</li>
+            </ul>
+          </div>
+        </div>
+        <div className="row text-center d-flex justify-content-around">
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <img src={weatherInfo.icon} alt={weatherInfo.description} />
+            <p className="forecastTemperature">{weatherInfo.temperature}</p>
+          </div>
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <img src={weatherInfo.icon} alt={weatherInfo.description} />
+            <p className="forecastTemperature">{weatherInfo.temperature}</p>
+          </div>
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <img src={weatherInfo.icon} alt={weatherInfo.description} />
+            <p className="forecastTemperature">{weatherInfo.temperature}</p>
+          </div>
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <img src={weatherInfo.icon} alt={weatherInfo.description} />
+            <p className="forecastTemperature">{weatherInfo.temperature}</p>
+          </div>
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <img src={weatherInfo.icon} alt={weatherInfo.description} />
+            <p className="forecastTemperature">{weatherInfo.temperature}</p>
+          </div>
+        </div>
       </div>
     );
   } else {
