@@ -8,7 +8,7 @@ export default function DisplayWeather() {
   const currentCityIcon = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const [city, setCity] = useState("");
-  const [typedCity, setTypedCity] = useState("");
+  const [typedCity, setTypedCity] = useState("Angra do Heroísmo");
   const [weatherInfo, setWeatherInfo] = useState(null);
   const [loaded, setLoaded] = useState(false);
   let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
@@ -29,6 +29,7 @@ export default function DisplayWeather() {
   function handleResponse(response) {
       console.log(response);
     setWeatherInfo({
+      cityName: response.data.name,
       dateHour: formatDate(response.data.dt * 1000),
       temperature: Math.round(response.data.main.temp),
       description: response.data.weather[0].description,
@@ -81,7 +82,7 @@ export default function DisplayWeather() {
         
           <div className="row">
             <div className="col-4">
-              <h2 className="city">{typedCity}</h2>
+              <h2 className="city">{weatherInfo.cityName}</h2>
               <h4 className="currentDate">{weatherInfo.dateHour}</h4>
               <h3 className="weatherDescription">{weatherInfo.description}</h3>
               <img src={weatherInfo.icon} alt={weatherInfo.description} />
