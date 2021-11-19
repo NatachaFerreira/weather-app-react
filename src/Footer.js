@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer(){
     return (
-      <div className="footer">
+      <div className="footer text-center">
         <small>
           <a
             href="https://github.com/NatachaFerreira/weather-app-react.git"
