@@ -4,12 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-export default function DisplayWeather() {
+export default function DisplayWeather(props) {
   const currentCityIcon = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const [city, setCity] = useState("");
-  const [typedCity, setTypedCity] = useState("Angra do Heroísmo");
-  const [weatherInfo, setWeatherInfo] = useState(null);
+  const [weatherInfo, setWeatherInfo] = useState({loaded: false});
   const [loaded, setLoaded] = useState(false);
   let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
   let units = "metric";
@@ -21,24 +20,22 @@ export default function DisplayWeather() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setTypedCity(`${city}`);
-    
     axios.get(apiUrl).then(handleResponse);
 }
 
   function handleResponse(response) {
-      console.log(response);
     setWeatherInfo({
-      cityName: response.data.name,
-      dateHour: formatDate(response.data.dt * 1000),
-      temperature: Math.round(response.data.main.temp),
-      description: response.data.weather[0].description,
-      minTemperature: Math.round(response.data.main.temp_min),
-      maxTemperature: Math.round(response.data.main.temp_max),
-      feelsLike: Math.round(response.data.main.feels_like),
-      humidity: response.data.main.humidity,
-      wind: Math.round(3.6 * response.data.wind.speed),
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+        loaded: true,
+        cityName: response.data.name,
+        dateHour: formatDate(response.data.dt * 1000),
+        temperature: Math.round(response.data.main.temp),
+        description: response.data.weather[0].description,
+        minTemperature: Math.round(response.data.main.temp_min),
+        maxTemperature: Math.round(response.data.main.temp_max),
+        feelsLike: Math.round(response.data.main.feels_like),
+        humidity: response.data.main.humidity,
+        wind: Math.round(3.6 * response.data.wind.speed),
+        icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     }); 
     setLoaded(true);
   }
@@ -76,7 +73,7 @@ export default function DisplayWeather() {
     return `${day}, ${date.getDate()} ${month} ${hours}:${minutes}`;
   }
 
-  if (loaded) { 
+  if (weatherInfo.loaded) { 
     return (
       <div className="displayWeather">
         
@@ -84,7 +81,7 @@ export default function DisplayWeather() {
             <div className="col-4">
               <h2 className="city">{weatherInfo.cityName}</h2>
               <h4 className="currentDate">{weatherInfo.dateHour}</h4>
-              <h3 className="weatherDescription">{weatherInfo.description}</h3>
+              <h3 className="weatherDescription text-capitalize">{weatherInfo.description}</h3>
               <img src={weatherInfo.icon} alt={weatherInfo.description} />
             </div>
             <div className="col-2">
@@ -138,9 +135,8 @@ export default function DisplayWeather() {
     );
   } else {
         let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
-        let city = "Angra do Heroísmo"
         let units = "metric";
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=${units}`;
         axios.get(apiUrl).then(handleResponse);
 
         return "Loading weather info..."
