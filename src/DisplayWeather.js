@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./DisplayWeather.css"
+import FormattedDate from "./FormattedDate";
 
 export default function DisplayWeather(props) {
   const currentCityIcon = <FontAwesomeIcon icon={faMapMarkerAlt} />;
@@ -27,7 +28,7 @@ export default function DisplayWeather(props) {
     setWeatherInfo({
         loaded: true,
         cityName: response.data.name,
-        dateHour: formatDate(response.data.dt * 1000),
+        dateHour: new Date(response.data.dt * 1000),
         temperature: Math.round(response.data.main.temp),
         description: response.data.weather[0].description,
         minTemperature: Math.round(response.data.main.temp_min),
@@ -39,46 +40,13 @@ export default function DisplayWeather(props) {
     }); 
   }
   
-  function formatDate(timestamp) {
-    let date = new Date(timestamp);
-    let days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    let day = days[date.getDay()];
-    let months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    let month = months[date.getMonth()];
-    let hours = date.getHours();
-    let minutes = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
-
-    return `${day}, ${date.getDate()} ${month} ${hours}:${minutes}`;
-  }
-
   if (weatherInfo.loaded) { 
     return (
       <div className="displayWeather">
         <div className="row">
           <div className="col-5">
             <h2 className="city">{weatherInfo.cityName}</h2>
-            <h4 className="currentDate">{weatherInfo.dateHour}</h4>
+            <h4 className="currentDate"><FormattedDate date={weatherInfo.dateHour} /></h4>
             <h3 className="weatherDescription text-capitalize">
               {weatherInfo.description}
             </h3>
