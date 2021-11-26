@@ -37,7 +37,6 @@ export default function DisplayWeather(props) {
 }
 
   function handleResponse(response) {
-    console.log(response)
     setWeatherData({
       loaded: true,
       cityName: response.data.name,
@@ -49,6 +48,7 @@ export default function DisplayWeather(props) {
       feelsLike: Math.round(response.data.main.feels_like),
       humidity: response.data.main.humidity,
       wind: Math.round(3.6 * response.data.wind.speed),
+      iconCode : response.data.weather[0].icon,
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     }); 
   }

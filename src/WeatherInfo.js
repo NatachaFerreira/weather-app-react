@@ -1,12 +1,17 @@
 import React from "react";
+import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherInfo(props) {
     return (
-        <div className="weatherInfo">
-            <h3 className="weatherDescription text-capitalize">
-              {props.data.description}
-            </h3>
-            <img src={props.data.icon} alt={props.data.description} />
-          </div>
+      <div className="weatherInfo">
+        <h3 className="weatherDescription text-capitalize">
+          {props.data.description}
+        </h3>
+        <WeatherIcon
+          code={props.data.iconCode}
+          description={props.data.description}
+          size="130%"
+        />
+      </div>
     );
 }
