@@ -1,5 +1,4 @@
 import React from "react";
-import ReactAnimatedWeather from "react-animated-weather";
 
 export default function WeatherIcon(props) {
     const iconMapping = {
@@ -25,6 +24,6 @@ export default function WeatherIcon(props) {
 
   let icon = iconMapping[props.code];
 
-  let iconurl = `https://basmilius.github.io/weather-icons/production/line/all/${icon}.svg`;
+  let iconurl = `https://basmilius.github.io/weather-icons/production/fill/all/${icon}.svg`;
     return <img src={iconurl} alt={props.description} width={props.size} />;
 }

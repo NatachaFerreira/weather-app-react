@@ -1,4 +1,5 @@
 import React from "react";
+import WeatherIcon from "./WeatherIcon";
 
 
 export default function WeatherForecast(props) {
@@ -8,16 +9,49 @@ export default function WeatherForecast(props) {
         <div className="row text-center d-flex justify-content-around">
           <div className="col-2">
             <p className="forecastDay">Saturday</p>
-            <img
-              src={props.data.icon}
-              alt={props.data.description}
+            <WeatherIcon
+              code={props.data.iconCode}
+              description={props.data.description}
+              size="100%"
             />
-            <p className="forecastTemperature">
-              {props.data.temperature}
-            </p>
+            <p className="forecastTemperature">{props.data.temperature}</p>
           </div>
-         
-          
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <WeatherIcon
+              code={props.data.iconCode}
+              description={props.data.description}
+              size="100%"
+            />
+            <p className="forecastTemperature">{props.data.temperature}</p>
+          </div>
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <WeatherIcon
+              code={props.data.iconCode}
+              description={props.data.description}
+              size="100%"
+            />
+            <p className="forecastTemperature">{props.data.temperature}</p>
+          </div>
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <WeatherIcon
+              code={props.data.iconCode}
+              description={props.data.description}
+              size="100%"
+            />
+            <p className="forecastTemperature">{props.data.temperature}</p>
+          </div>
+          <div className="col-2">
+            <p className="forecastDay">Saturday</p>
+            <WeatherIcon
+              code={props.data.iconCode}
+              description={props.data.description}
+              size="100%"
+            />
+            <p className="forecastTemperature">{props.data.temperature}</p>
+          </div>
         </div>
       </div>
     );

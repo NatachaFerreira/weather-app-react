@@ -1,9 +1,44 @@
-.displayWeather {
-    width: 700px;
-    padding: 60px auto;
-    
+body {
+    color: rgb(105, 105, 105);
 }
 
-.cityInput {
-    width: 140px;
+.displayWeather {
+    width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-image: url(/src/images/Watercolor02.jpg);
+    background-size: cover; 
+    box-shadow: 0px 11px 22px rgb(0 0 0 / 15%);
+}
+
+.search-box button {
+    background-color: rgb(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 3px;
+}
+
+.search-box .cityInput {
+    background-color: rgb(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 20px;
+    height: 35px;
+    letter-spacing: 1.7px;
+    margin-right: 5px;
+    padding-left: 15px;
+    width: 350px;
+}
+
+.search-box .cityInput:focus {
+    background-color: rgb(255, 255, 255, 0.75);
+    outline: none;
+}
+
+
+
+.search-box svg {
+   color: rgb(105, 105, 105);
 }
