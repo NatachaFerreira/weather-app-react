@@ -35,6 +35,7 @@ export default function DisplayWeather(props) {
     setWeatherData({
       loaded: true,
       cityName: response.data.name,
+      coords: response.data.coord,
       dateHour: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
