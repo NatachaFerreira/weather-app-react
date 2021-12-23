@@ -9,7 +9,6 @@ import WeatherForecast from "./WeatherForecast";
 
 
 export default function DisplayWeather(props) {
-  const currentCityIcon = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ loaded: false });
