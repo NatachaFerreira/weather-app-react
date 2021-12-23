@@ -61,7 +61,6 @@ export default function DisplayWeather(props) {
               className="cityInput"
             />
             <button type="submit">{searchIcon}</button>
-            <button>{currentCityIcon}</button>
           </form>
         </div>
         <WeatherTemperature data={weatherData} />

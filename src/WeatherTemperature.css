@@ -13,12 +13,13 @@
 }
 
 .temperature-info {
-    margin-top: -150px;
+    margin-top: -155px;
     margin-left: 200px;
 }
 
 .unit {
-    font-size: 35px;
+    font-size: 45px;
+    margin-left: -30px;
 }
 
 .unit a {

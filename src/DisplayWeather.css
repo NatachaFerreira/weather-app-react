@@ -8,7 +8,7 @@ body {
     padding: 30px;
     border: 1px solid white;
     border-radius: 10px;
-    background-image: url(/src/images/Watercolor02.jpg);
+    background-image: url(/src/images/background.png);
     background-size: cover; 
     box-shadow: 0px 11px 22px rgb(0 0 0 / 15%);
 }
@@ -37,8 +37,10 @@ body {
     outline: none;
 }
 
-
-
 .search-box svg {
    color: rgb(105, 105, 105);
+}
+
+.forecastMinTemp {
+    opacity: 50%;
 }

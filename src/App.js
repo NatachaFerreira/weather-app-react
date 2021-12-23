@@ -1,4 +1,3 @@
-import './App.css';
 import Footer from './Footer';
 import DisplayWeather from './DisplayWeather';
 
